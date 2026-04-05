@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Junior (sub 15)</title>
+    <!-- Modern Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Overlay for the background image -->
+    <div class="overlay"></div>
+
+    <div class="container">
+        <header>
+            <h1>Premier Junior <span> (2009/2010)</span></h1>
+            <nav id="tabs">
+                <button class="tab-btn active" data-tab="standings">Tabla de Posiciones</button>
+                <button class="tab-btn" data-tab="fixtures">Próxima Fecha</button>
+                <button class="tab-btn" data-tab="results">Resultados Anteriores</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Content: Standings Table -->
+            <section id="standings" class="tab-content active">
+                <h2>Resultados Generales</h2>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr id="standings-head">
+                                <!-- JS fills this dynamically -->
+                            </tr>
+                        </thead>
+                        <tbody id="standings-body">
+                            <!-- JS fills this dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="tab-btn" id="exportBtn"
+                        style="background-color: #28a745; display: inline-block;">Descargar Excel</button>
+                </div>
+            </section>
+
+            <!-- Content: Upcoming Matches -->
+            <section id="fixtures" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
+                    <h2>Próximos Enfrentamientos</h2>
+                    <div class="round-selector-container">
+                        <label for="roundSelectFixtures">Ver Jornada: </label>
+                        <select id="roundSelectFixtures" class="round-select"></select>
+                    </div>
+                </div>
+                <div class="matches-grid" id="fixtures-container">
+                    <!-- JS fills this dynamically -->
+                </div>
+            </section>
+
+            <!-- Content: Played Matches -->
+            <section id="results" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
+                    <h2>Partidos Jugados</h2>
+                    <div class="round-selector-container">
+                        <label for="roundSelectResults">Ver Jornada: </label>
+                        <select id="roundSelectResults" class="round-select"></select>
+                    </div>
+                </div>
+                <div class="matches-grid" id="results-container">
+                    <!-- JS fills this dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para ver partidos de un equipo -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <img src="" id="modalTeamLogo" class="team-logo-large" alt="Logo" onerror="this.src='premier_junior.jpg'">
+                <h2 id="modalTeamName">Nombre del Equipo</h2>
+            </div>
+
+            <h3 class="modal-subtitle">Partidos Jugados:</h3>
+            <div class="matches-grid" id="modal-finished-matches">
+                <!-- Se llenará con JS -->
+            </div>
+
+            <h3 class="modal-subtitle" style="margin-top: 2rem;">Próximos Partidos:</h3>
+            <div class="matches-grid" id="modal-scheduled-matches">
+                <!-- Se llenará con JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
