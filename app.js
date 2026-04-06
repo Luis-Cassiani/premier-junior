@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Equipos leídos tal cual del CSV:", parsedTeams);
 
             if (parsedTeams.length > 0) {
-                // Filtra solo los equipos que tienen active=1
-                teams = parsedTeams.filter(t => t.active == '1' || t.active === 1);
+                // Filtra solo los equipos que tienen activo=1
+                teams = parsedTeams.filter(t => t.activo == '1' || t.activo === 1);
                 matches = parsedMatches;
                 
                 if(teams.length === 0) {
-                    alert('El archivo equipos.csv se cargó bien, pero ningún equipo tiene un 1 en la columna "active". Aparecerán vacíos.');
+                    alert('El archivo equipos.csv se cargó bien, pero ningún equipo tiene un 1 en la columna "activo". Aparecerán vacíos.');
                 }
             } else {
                 alert("ALERTA: El sistema leyó tu archivo equipos.csv pero parece estar en blanco o tiene un formato incorrecto. ¡Abre la consola F12 para ver más detalles!");
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 PJ: 0, G: 0, E: 0, P: 0,
                 GF: 0, GC: 0, DG: 0,
                 Puntos: 0,
-                active: t.active
+                activo: t.activo
             };
         });
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (standings.length === 0) return;
 
         // Ocultar columnas técnicas
-        const hiddenCols = ['id', 'logo', 'active'];
+        const hiddenCols = ['id', 'logo', 'activo'];
 
         // Obtener nombres de columnas dinámicos leídos del CSV
         const keys = Object.keys(standings[0]);
