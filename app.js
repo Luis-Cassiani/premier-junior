@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Procesar partidos finalizados para sumar puntos y goles
         matches.forEach(m => {
-            if (m.status === 'finished') {
+            if (m.status === 'finalizado') {
                 const homeId = m.home_team_id;
                 const awayId = m.away_team_id;
                 const hScore = parseInt(m.home_score) || 0;
@@ -206,8 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
 
-        // Filtrar primero por estado (terminado o programado)
-        let filteredMatches = matches.filter(m => isFinished ? m.status === 'finished' : m.status !== 'finished');
+        // Filtrar primero por estado (finalizado o programado)
+        let filteredMatches = matches.filter(m => isFinished ? m.status === 'finalizado' : m.status !== 'finalizado');
 
         // Si no hay partidos de ese tipo, salir
         if (filteredMatches.length === 0) {
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Seleccionar por defecto la más lógica
-            const filtered = matches.filter(m => isFinishedDefault ? m.status === 'finished' : m.status !== 'finished');
+            const filtered = matches.filter(m => isFinishedDefault ? m.status === 'finalizado' : m.status !== 'finalizado');
             const relRounds = [...new Set(filtered.map(m => m.jornada))].sort((a, b) => Number(a) - Number(b));
             if (relRounds.length > 0) {
                 select.value = isFinishedDefault ? relRounds[relRounds.length - 1] : relRounds[0];
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const renderModalCards = (containerId, isFinished) => {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
-            const filtered = teamMatches.filter(m => isFinished ? m.status === 'finished' : m.status !== 'finished');
+            const filtered = teamMatches.filter(m => isFinished ? m.status === 'finalizado' : m.status !== 'finalizado');
 
             if (filtered.length === 0) {
                 container.innerHTML = `<p style="color: var(--text-muted);">No hay partidos.</p>`;
