@@ -62,7 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parsedTeams.length > 0) {
                 // Filtra solo los equipos que tienen activo=1
                 teams = parsedTeams.filter(t => t.activo == '1' || t.activo === 1);
-                matches = parsedMatches;
+                
+                // Mapear cabeceras en español a nombres internos para que el resto del código funcione
+                matches = parsedMatches.map(m => ({
+                    id: m.id,
+                    jornada: m.jornada,
+                    home_team_id: m.id_local,
+                    away_team_id: m.id_visitante,
+                    home_score: parseInt(m.goles_local) || 0,
+                    away_score: parseInt(m.goles_visitante) || 0,
+                    status: m.estado, // 'finalizado' o 'programado'
+                    date: m.fecha
+                }));
                 
                 if(teams.length === 0) {
                     alert('El archivo equipos.csv se cargó bien, pero ningún equipo tiene un 1 en la columna "activo". Aparecerán vacíos.');
